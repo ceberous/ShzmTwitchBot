@@ -46,6 +46,8 @@ const SEARCH_TIME = 15800;
 function sleep( ms ) { return new Promise( resolve => setTimeout( resolve , ms ) ); }
 function SleepSearchTime() { return new Promise( resolve => setTimeout( resolve , SEARCH_TIME ) ); }
 
+var LAST_SENT = "";
+var CONFIRMATION = "";
 var LAST_SONG = "";
 var x1 = "";
 async function checkShazam() {
@@ -62,9 +64,17 @@ async function checkShazam() {
     sendTouchPredefind( touch_Copy_To_Clipboard );
     await sleep( 250 );
     x1 = getClipBoard();
-    if ( x1 !== "BLANK_SHZM_BOT" && x1 !== LAST_SONG ) {
+    if ( x1 !== "BLANK_SHZM_BOT" ) {
         console.log( "new song !!!" );
-        await twitchSay( x1 );
+        CONFIRMATION = x1;
+        if ( CONFIRMATION === LAST_SONG ) {
+            if ( LAST_SENT !== x1 ) {
+                console.log( "Sending Message" );
+                await twitchSay( x1 );
+                LAST_SENT = x1;
+            }
+            CONFIRMATION = null;
+        }
     }
     LAST_SONG = x1;
     console.log( LAST_SONG );
