@@ -1,0 +1,15 @@
+{
+  "name": "astbottest1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "shelljs": "^0.7.8",
+    "tmi.js": "^1.2.1"
+  }
+}
