@@ -49,13 +49,16 @@ function SleepSearchTime() { return new Promise( resolve => setTimeout( resolve 
 var LAST_SONG = "";
 var x1 = "";
 async function checkShazam() {
+
+    forceStop();
+    await sleep( 1000 );
     clearClipBoard();
     fromUnopened();
     await SleepSearchTime();
     sendTouchPredefind( touch_Share );
-    await sleep( 250 );
+    await sleep( 1000 );
     sendTouchPredefind( touch_Scroll_To_View_Clipboard );
-    await sleep( 250 );
+    await sleep( 500 );
     sendTouchPredefind( touch_Copy_To_Clipboard );
     await sleep( 250 );
     x1 = getClipBoard();
